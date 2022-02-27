@@ -34,13 +34,13 @@ function showQuestion(question){
         const button = document.createElement('button');
         button.innerText = answer.text
         button.classList.add('btn');
-        if(answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
+        // if(answer.correct) {
+        //     button.dataset.correct = answer.correct;
+        // }
         button.addEventListener('click', selectAnswer);
+        console.log(answer_arr);
         answerButtonsElement.appendChild(button)
     })
-    console.log('asdfubbawefbruvwrtuhu buhi')
 }
 
 function resetState() {
@@ -52,58 +52,143 @@ function resetState() {
 }
 function selectAnswer(e) {
     const selectedButton = e.target
-    if(answer_arr !== null && answer_arr.length < )
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
+    if(answer_arr.length < currentQuestionIndex + 1){
+        answer_arr.push(selectedButton.innerText);
+        selectedButton.classList.add('render');
+    } else{
+        answer_arr[currentQuestionIndex] = selectedButton
+        Array.from(answerButtonsElement.children).forEach(button => {
+            button.classList.remove('render');
+        });
+        selectedButton.classList.add('render');
+    }
+    // const correct = selectedButton.dataset.correct
+    // setStatusClass(document.body, correct)
+    // Array.from(answerButtonsElement.children).forEach(button => {
+    //     setStatusClass(button, button.dataset.correct)
+    // })
     if(shuffledQuestions.length > currentQuestionIndex + 1){
         nextButton.classList.remove('hide');
     } else{
-        startButton.innerText = 'Restart'
+        //Here a link needs to be provided or etc.
+        startButton.innerText = 'Click here to view assets you should invest in!!!'
         startButton.classList.remove('hide')
     }
 }
 
-function setStatusClass(element, correct) {
+function setStatusClass(element) {
     clearStatusClass(element)
-    if(correct){
-        element.classList.add('correct')
-    } else{
-        element.classList.add('wrong')
-    }
+    element.classList.add('render')
+    // if(correct){
+    //     element.classList.add('correct')
+    // } else{
+    //     element.classList.add('wrong')
+    // }
 }
 
 function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
+    element.classList.remove('render')
+    // element.classList.remove('wrong')
 }
 const questions = [
     {
-        question: 'What is 2+2',
+        question: 'What is your gender?',
         answers: [
-            { text: '4', correct:true},
-            { text: '22', correct:false}
+            { text: 'Male'},
+            { text: 'Female'}
         ]
     }, 
     {
-        question: 'What is 4+2',
+        question: 'What is your age?',
         answers: [
-            { text: '4', correct:true},
-            { text: '22', correct:false}
+            { text: '10'},
+            { text: '20'}
         ]
     },     {
-        question: 'What is 4+2',
+        question: 'What is your highest level of education?',
         answers: [
-            { text: '4', correct:true},
-            { text: '22', correct:false}
+            { text: 'Middle school and below'},
+            { text: 'High School'},
+            {text: 'College and above'}
         ]
     },     {
-        question: 'What is 4+2',
+        question: 'What is your yearly income?',
         answers: [
-            { text: '4', correct:true},
-            { text: '22', correct:false}
+            { text: '$0- $60,000'},
+            { text: '$60,000 - $150,000'},
+            { text: '$150,000 and above'}
+        ]
+    },      {
+        question: 'What is your employment status?',
+        answers: [
+            { text: 'unemployed'},
+            { text: 'self employed'},
+            { text: '$150,000 and above'}
+        ]
+    },      {
+        question: 'Do you have any health impairment/disabilitys?',
+        answers: [
+            { text: 'Yes'},
+            { text: 'No'},
+        ]
+    },      {
+        question: 'Are you married?',
+        answers: [
+            { text: 'Yes'},
+            { text: 'No'},
+        ]
+    },{
+        question: 'Now some fun questions! This question is very important to help you find assets that you should invest in. Imagine that you earn 200 dollars a month. What would you prefer?',
+        answers: [
+            {text: 'Click here and then click next to continue'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$50'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$60'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$70'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$80'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$90'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$100'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$110'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
+        ]
+    }, {
+        question: 'Which do you prefer?',
+        answers: [
+            {text: '$120'},
+            {text: 'A fair coin flip in which you get $200 if it is heads, $0 if it is tails'}
         ]
     }
 ];

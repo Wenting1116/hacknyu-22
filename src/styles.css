@@ -86,3 +86,7 @@ body.wrong {
 .hide {
   display: none;
 }
+
+.render {
+  color: blue;
+}
